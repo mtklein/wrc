@@ -7,7 +7,7 @@
 
 static constexpr size_t W = static_cast<size_t>(1) << (sizeof(size_t)*4);
 
-void split_shares(size_t* from, size_t* to, std::atomic<size_t>* weight);
+void split_shares(size_t* src, size_t* dst, std::atomic<size_t>* weight);
 
 template <typename T>
 class wrc {
