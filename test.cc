@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include <utility>
 
-struct foo : public weighted_refcount {
-    foo (int v) : x(v) { printf("hi\n"); }
+struct foo {
+    foo(int v) : x(v) { printf("hi\n"); }
     ~foo() { printf("bye\n"); }
+
     int x;
 };
 
@@ -20,10 +21,12 @@ int main(int, char**) {
     printf("x: %d\n", f->x);
 
     wrc<foo> moved{ std::move(f) };
-    printf("%p\n", f.get());
+    if (f) {
+        printf("f is still alive\n");
+    } else {
+        printf("f is a husk\n");
+    }
     printf("x: %d\n", moved->x);
-
-    printf("%zu\n", W);
 
     return 0;
 }
