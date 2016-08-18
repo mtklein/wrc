@@ -1,6 +1,7 @@
 #include "wrc.h"
 
 // This function is thread safe with respect to weight but not with respect to src or dst.
+// It should never need to be thread-safe with respect to dst... src is still in question.
 void split_shares(size_t* src, size_t* dst, std::atomic<size_t>* weight) {
     size_t s = *src,
            d = *dst;
